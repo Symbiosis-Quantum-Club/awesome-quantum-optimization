@@ -1,7 +1,10 @@
 # awesome-quantum-optimization
 
 Optimization is the #1 real-world use case of near-term quantum computers.
-''
+
+
+
+```bash
 awesome-quantum-optimization/
 │
 ├── README.md                           → Main landing page, table of contents, categories
@@ -95,5 +98,4 @@ awesome-quantum-optimization/
     │    └── README.md
     └── blogs/                          → Articles, explainers, newsletters
          └── README.md
-''
-
+```
