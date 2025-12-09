@@ -20,24 +20,6 @@ Whether you are a researcher, engineer, student, or enthusiast, this repository 
 
 ---
 
-# 📚 **Table of Contents**
-
-### 🔹 [Algorithms](#algorithms)
-
-### 🔹 [Libraries & SDKs](#libraries--sdks)
-
-### 🔹 [Optimization Problems](#problems)
-
-### 🔹 [Datasets for Quantum Optimization](#datasets)
-
-### 🔹 [Benchmarks & Metrics](#benchmarks)
-
-### 🔹 [Research Papers](#papers)
-
-### 🔹 [Learning Resources](#resources)
-
----
-
 # 🚀 Algorithms
 
 Quantum optimization spans multiple algorithmic paradigms. Each folder provides:
