@@ -57,20 +57,27 @@ Effective benchmarking requires well-defined performance metrics. Below are the 
 
 ### 2.1 Approximation Ratio
 
-Measures solution quality relative to optimal bounds:
+The **Approximation Ratio (AR)** measures the quality of a solver’s solution relative to known optimal bounds:
 
-[
-\text{Approximation Ratio (AR)} = \frac{C_{\text{best}} - C_{\text{solver}}}{C_{\text{best}} - C_{\text{worst}}}
-]
+\[
+\text{Approximation Ratio (AR)} =
+\frac{C_{\text{solver}} - C_{\text{worst}}}
+{C_{\text{best}} - C_{\text{worst}}}
+\]
 
-Where:
+**Where:**
 
-* (C_{\text{best}}): best known optimal cost,
-* (C_{\text{solver}}): cost found by solver,
-* (C_{\text{worst}}): worst possible cost for the instance. ([IBM Quantum Documentation][6])
+- \( C_{\text{best}} \): Best known (optimal) cost  
+- \( C_{\text{solver}} \): Cost obtained by the solver  
+- \( C_{\text{worst}} \): Worst possible cost for the problem instance  
+
+*(Adapted from IBM Quantum documentation)*
 
 **Interpretation:**
-A ratio of 1.0 means optimal; lower values indicate worse performance.
+
+- **AR = 1.0** → Optimal solution  
+- **AR = 0.0** → Worst possible solution  
+- **0 < AR < 1** → Quality improves as the value approaches 1
 
 ---
 
