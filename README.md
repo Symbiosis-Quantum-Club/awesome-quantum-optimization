@@ -1,7 +1,7 @@
 
-# ⭐ Awesome Quantum Optimization
+# ⭐ Awesome-Quantum-Optimization
 
-*A curated, implementation-focused guide to **quantum optimization**. We shall discuss problem formulations, algorithms, tools, datasets, benchmarks, and practical project directions. *
+*A curated, implementation-focused guide to **quantum optimization**. We shall discuss problem formulations, algorithms, tools, datasets, benchmarks, and practical project directions.*
 
 
 ---
