@@ -1,9 +1,3 @@
-Absolutely — below is a **more technical, concise, and implementation-focused `README.md`**.
-It removes motivational language, avoids hype, and keeps the focus on **realistic, deployable quantum optimization workflows**.
-
-You can use this directly as your root `README.md`.
-
----
 
 # ⭐ Awesome Quantum Optimization
 
@@ -13,7 +7,7 @@ You can use this directly as your root `README.md`.
 
 ## Overview
 
-**Quantum optimization** studies how quantum and quantum-inspired algorithms can be applied to combinatorial and continuous optimization problems. Most practical approaches reduce problems to **QUBO (Quadratic Unconstrained Binary Optimization)** or **Ising Hamiltonians**, which can then be processed using:
+**Quantum optimization** studies how quantum and quantum-inspired algorithms can be applied to continuous optimization problems. Most practical approaches reduce problems to **QUBO (Quadratic Unconstrained Binary Optimization)** or **Ising Hamiltonians**, which can then be processed using the following techniques:
 
 * gate-based variational algorithms (e.g., QAOA),
 * analog / adiabatic methods,
@@ -157,18 +151,6 @@ These are suitable for:
 
 ---
 
-## Contributing
-
-Contributions should prioritize:
-
-* correctness,
-* clarity,
-* reproducibility,
-* practical relevance.
-
-See [`CONTRIBUTING.md`](CONTRIBUTING.md) for guidelines.
-
----
 
 ## License
 
@@ -176,11 +158,3 @@ MIT License — see [`LICENSE`](LICENSE).
 
 ---
 
-If you want next steps, I recommend:
-
-1. Writing `02-problems.md` with **deployment realism tags**
-2. Making `06-project-ideas.md` the flagship document
-3. Adding a minimal QUBO formulation appendix
-4. Aligning examples with **Qiskit Optimization + D-Wave Ocean**
-
-Just tell me which one to do next.
