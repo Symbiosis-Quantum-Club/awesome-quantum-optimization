@@ -149,19 +149,3 @@ These platforms help compare solver behavior across hardware types.
 * **Azure Quantum** — [https://azure.microsoft.com/services/quantum/](https://azure.microsoft.com/services/quantum/)
 
 ---
-
-## Notes on Diagram Syntax
-
-Use the `flowchart` diagram type in Mermaid. GitHub’s Markdown renderer supports this syntax when enclosed in a fenced code block with `mermaid` at the top (e.g., ```mermaid`). Avoid using raw spaces or lowercase reserved words like `end` inside node IDs to prevent parser errors. ([GitHub Docs][1])
-
----
-
-If you want, I can also include:
-
-* **minimal example code** (Python/SDK snippets) for each stack
-* **decision tree diagrams** to pick tools based on problem type and size
-* **sample execution pipelines** for real-world use cases (e.g., TFISP + hybrid solvers)
-
-Just tell me what you want next!
-
-[1]: https://docs.github.com/en/enterprise-server%403.16/get-started/writing-on-github/working-with-advanced-formatting/creating-diagrams?utm_source=chatgpt.com "Creating diagrams - GitHub Enterprise Server 3.16 Docs"
