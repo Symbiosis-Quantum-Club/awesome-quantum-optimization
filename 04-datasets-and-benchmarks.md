@@ -68,9 +68,9 @@ $$
 
 Where:
 
-- **\(C_{\text{best}}\)** — best known optimal cost  
-- **\(C_{\text{solver}}\)** — cost obtained by the solver  
-- **\(C_{\text{worst}}\)** — worst possible cost for the instance  
+- **C-best** — best known optimal cost  
+- **C-solver** — cost obtained by the solver  
+- **C-worst** — worst possible cost for the instance  
 
 Interpretation:
 
