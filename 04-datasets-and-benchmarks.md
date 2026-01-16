@@ -4,7 +4,7 @@ Here we will discuss **benchmark datasets, instance collections, evaluation metr
 
 ---
 
-## Why Benchmarks Matter
+## Why Benchmarks Matter?
 
 Benchmarking serves two purposes in quantum optimization:
 
@@ -54,30 +54,25 @@ Benchmarks often use diverse problem types to stress solvers along different dim
 Effective benchmarking requires well-defined performance metrics. Below are the most commonly used metrics in optimization benchmarking.
 
 ---
-
 ### 2.1 Approximation Ratio
 
-The **Approximation Ratio (AR)** measures the quality of a solver’s solution relative to known optimal bounds:
+The **Approximation Ratio (AR)** measures solution quality relative to known bounds:
 
-\[
-\text{Approximation Ratio (AR)} =
-\frac{C_{\text{solver}} - C_{\text{worst}}}
-{C_{\text{best}} - C_{\text{worst}}}
-\]
+$$
+\text{AR} = \frac{C_{\text{best}} - C_{\text{solver}}}{C_{\text{best}} - C_{\text{worst}}}
+$$
 
 **Where:**
 
-- \( C_{\text{best}} \): Best known (optimal) cost  
-- \( C_{\text{solver}} \): Cost obtained by the solver  
-- \( C_{\text{worst}} \): Worst possible cost for the problem instance  
-
-*(Adapted from IBM Quantum documentation)*
+- **\(C_{\text{best}}\)** — best known (optimal) cost  
+- **\(C_{\text{solver}}\)** — cost obtained by the solver  
+- **\(C_{\text{worst}}\)** — worst possible cost for the instance  
 
 **Interpretation:**
 
-- **AR = 1.0** → Optimal solution  
-- **AR = 0.0** → Worst possible solution  
-- **0 < AR < 1** → Quality improves as the value approaches 1
+- **AR = 1.0** → optimal solution  
+- **AR < 1.0** → sub-optimal solution  
+- Lower values indicate worse performance  
 
 ---
 
