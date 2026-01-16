@@ -1,21 +1,24 @@
 # 04 – Datasets & Benchmarks
 
-Here we will discuss **benchmark datasets, instance collections, evaluation metrics, and benchmarking methods** relevant to quantum optimization. It is intended to help practitioners select **standard instances**, choose **quality metrics**, and set up **fair comparisons** for optimization solvers.
+Here we discuss **benchmark datasets, instance collections, evaluation metrics, and benchmarking methods** relevant to quantum optimization. The goal is to help practitioners select **standard instances**, choose **quality metrics**, and set up **fair comparisons** for optimization solvers.
 
 ---
 
-## Why Benchmarks Matter?
+## Why Benchmarks Matter
 
 Benchmarking serves two purposes in quantum optimization:
 
-1. **Comparative evaluation:** Assess how different solvers (quantum, hybrid, classical) perform on a common set of problems.
-2. **Progress tracking:** Quantify solver improvements and hardware scaling over time.
+1. **Comparative evaluation**  
+   Assess how different solvers (quantum, hybrid, classical) perform on a common set of problems.
+
+2. **Progress tracking**  
+   Quantify solver improvements and hardware scaling over time.
 
 A good benchmark consists of:
 
-* a **collection of problem instances**,
-* clearly defined **criteria** for success,
-* and **metrics** for solver performance.
+- A **collection of problem instances**
+- Clearly defined **success criteria**
+- Well-defined **performance metrics**
 
 ---
 
@@ -25,180 +28,188 @@ These collections provide standard optimization problems in QUBO, Ising, or rela
 
 ### Common Benchmark Repositories
 
-| Dataset / Library                                      | Description                                                                                                                                       | Link                                                                                           |
-| ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| **QOPTLib**                                            | Combinatorial optimization instances (TSP, VRP, bin-packing, MaxCut) curated for quantum benchmarking. ([Mendeley Data][1])                       | [https://data.mendeley.com/datasets/h32z9kcz3s](https://data.mendeley.com/datasets/h32z9kcz3s) |
-| **Fixstars Amplify Benchmark**                         | Framework with pre-defined benchmark sets (TSPLIB, QPLIB, GSET, CVRPLIB). ([GitHub][2])                                                           | [https://github.com/fixstars/amplify-benchmark](https://github.com/fixstars/amplify-benchmark) |
-| **QOBLIB (Quantum Optimization Benchmarking Library)** | 10 optimization problem classes designed for systematic benchmarking of quantum and classical methods (intractable decathlon concept). ([IBM][3]) | [https://git.zib.de/qopt/qoblib-quantum-optimization-benchmarking-library/]                     |
-| **QUBO.org Benchmarks**                                | Repository and comparisons of classical and quantum QUBO solver performance. ([QUBO Solver Benchmark][4])                                         | [https://www.qubos.org/](https://www.qubos.org/)                                               |
-| **Hamiltonian Library (HamLib)**                       | Broad collection of Hamiltonians for benchmarking both optimization and simulation tasks (e.g., MaxCut, SAT variants). ([arXiv][5])               | [https://arxiv.org/abs/2306.13126]                                                     |
+| Dataset / Library | Description | Link |
+|------------------|-------------|------|
+| **QOPTLib** | Combinatorial optimization instances including TSP, VRP, bin packing, and MaxCut curated for quantum benchmarking. | https://data.mendeley.com/datasets/h32z9kcz3s |
+| **Fixstars Amplify Benchmark** | Benchmark framework with predefined sets including TSPLIB, QPLIB, GSET, and CVRPLIB. | https://github.com/fixstars/amplify-benchmark |
+| **QOBLIB** | Ten optimization problem classes designed for systematic quantum and classical benchmarking. | https://git.zib.de/qopt/qoblib-quantum-optimization-benchmarking-library |
+| **QUBO.org Benchmarks** | Repository comparing classical and quantum QUBO solvers. | https://www.qubos.org |
+| **Hamiltonian Library** | Collection of Hamiltonians for optimization and simulation tasks. | https://arxiv.org/abs/2306.13126 |
 
 ---
 
 ## Instance Categories
 
-Benchmarks often use diverse problem types to stress solvers along different dimensions:
+Benchmarks often use diverse problem types to stress solvers across different structural regimes.
 
-| Instance Type                        | Typical Use                       | Example Source   |
-| ------------------------------------ | --------------------------------- | ---------------- |
-| **MaxCut & spin glasses**            | Structure vs connectivity scaling | QOPTLib, HamLib  |
-| **TSP & routing**                    | Structured combinatorial          | QOPTLib, Amplify |
-| **Quadratic Assignment (QAP)**       | Dense interactions                | Amplify          |
-| **Random dense QUBO**                | Stress test for heuristics        | QUBO.org         |
-| **Constraint satisfaction families** | Hard feasibility regions          | QOBLIB           |
+| Instance Type | Typical Use | Example Source |
+|--------------|-------------|----------------|
+| **MaxCut and spin glasses** | Connectivity and structure scaling | QOPTLib, HamLib |
+| **TSP and routing** | Structured combinatorial optimization | QOPTLib, Amplify |
+| **Quadratic Assignment** | Dense interaction graphs | Amplify |
+| **Random dense QUBO** | Heuristic stress testing | QUBO.org |
+| **Constraint satisfaction families** | Hard feasibility regions | QOBLIB |
 
 ---
 
 ## 2. Evaluation Metrics
 
-Effective benchmarking requires well-defined performance metrics. Below are the most commonly used metrics in optimization benchmarking.
+Effective benchmarking requires well-defined performance metrics.
 
 ---
+
 ### 2.1 Approximation Ratio
 
-The **Approximation Ratio (AR)** measures solution quality relative to known bounds:
+The **Approximation Ratio (AR)** measures solution quality relative to known bounds.
 
 $$
 \text{AR} = \frac{C_{\text{best}} - C_{\text{solver}}}{C_{\text{best}} - C_{\text{worst}}}
 $$
 
-**Where:**
+Where:
 
-- **\(C_{\text{best}}\)** — best known (optimal) cost  
+- **\(C_{\text{best}}\)** — best known optimal cost  
 - **\(C_{\text{solver}}\)** — cost obtained by the solver  
 - **\(C_{\text{worst}}\)** — worst possible cost for the instance  
 
-**Interpretation:**
+Interpretation:
 
-- **AR = 1.0** → optimal solution  
-- **AR < 1.0** → sub-optimal solution  
+- **AR = 1.0** indicates an optimal solution  
+- **AR < 1.0** indicates sub-optimal performance  
 - Lower values indicate worse performance  
 
 ---
 
-### 2.2 Time-to-Solution (TTS)
+### 2.2 Time-to-Solution
 
-**Time-to-Solution** is a composite metric combining time and probabilistic success:
+**Time-to-Solution (TTS)** combines runtime and probabilistic success.
 
-```
-TTS = time_per_sample × log(1−target_confidence) / log(1−success_prob)
-```
 
-Where `success_prob` is the empirical probability of obtaining a solution of required quality.
-
-TTS is especially useful when comparing:
-
-* stochastic heuristics,
-* annealing samplers,
-* hybrid methods.
+- Annealing-based solvers
+- Hybrid quantum-classical methods
 
 ---
 
 ### 2.3 Success Probability
 
-Proportion of repeated solver runs that reach target quality (e.g., optimum or within tolerance).
-Often used for:
+The proportion of solver runs that reach a target solution quality.
 
-* QAOA benchmarks,
-* annealing sampling.
+Commonly used for:
+
+- QAOA benchmarks
+- Quantum annealing experiments
 
 ---
 
 ### 2.4 Scaling Metrics
 
-These metrics track solver behavior as problem size increases:
+Scaling metrics track solver behavior as problem size increases.
 
-| Metric                    | What It Measures                        |
-| ------------------------- | --------------------------------------- |
-| **Cost Scaling**          | How objective quality changes with size |
-| **Time Scaling**          | Execution time growth with variables    |
-| **Solution Distribution** | Variability of solutions over runs      |
+| Metric | Description |
+|------|-------------|
+| **Cost scaling** | Objective quality versus problem size |
+| **Time scaling** | Runtime growth with number of variables |
+| **Solution distribution** | Variance across repeated runs |
 
-These are often used in **empirical scaling plots**.
-
----
-
-## 3. Benchmark Frameworks & Tools
-
-Frameworks help standardize execution, comparison, and visualization of solver results.
-
-### 🔹 Amplify Benchmark
-
-* CLI for running benchmarks across solvers and collecting results.
-* Supports parallel execution and result visualization.
-* Pre-defined benchmark jobs include TSPLIB, GSET, QPLIB, CVRPLIB. ([GitHub][2])
-
-**Typical workflow:**
-
-```mermaid
-flowchart TD
-    Instances[Benchmark Instances]
-    JobFile[Job Set Definition]
-    Solver[Solver Set (Quantum/Classical)]
-    Execute[Run Benchmarks]
-    Results[Analyze Results]
-    Instances --> JobFile --> Solver --> Execute --> Results
-```
+These metrics are typically visualized using empirical scaling plots.
 
 ---
 
-## 4. Benchmark Setup Diagram
+## 3. Benchmark Frameworks and Tools
+
+Benchmark frameworks standardize execution, data collection, and comparison.
+
+### Amplify Benchmark Framework
+
+- Command-line interface for benchmark execution
+- Supports multiple solvers and parallel runs
+- Includes predefined benchmark suites
+
+#### Workflow Diagram
 
 ```mermaid
 flowchart TD
-    P[Raw Problem] --> E[Instance Encoding (QUBO/Ising)]
-    E --> S[Solver Execution]
-    S --> Q[Solution Samples]
-    Q --> M[Metric Computation]
-    M --> C[Comparison Across Solvers]
+    A[Benchmark Instances]
+    B[Job Set Definition]
+    C[Solver Set]
+    D[Run Benchmarks]
+    E[Analyze Results]
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+````
+
+---
+
+## 4. Benchmark Setup Pipeline
+
+```mermaid
+flowchart TD
+    P[Raw Problem]
+    E[Instance Encoding]
+    S[Solver Execution]
+    Q[Solution Samples]
+    M[Metric Computation]
+    C[Cross Solver Comparison]
+
+    P --> E
+    E --> S
+    S --> Q
+    Q --> M
+    M --> C
 ```
 
-**Explanation:**
+Explanation:
 
-1. **Instance Encoding:** Convert real-world problems into QUBO/Ising form.
-2. **Solver Execution:** Run quantum, hybrid, or classical solvers.
-3. **Solution Sampling:** Collect multiple runs to understand distribution.
-4. **Metric Computation:** Compute AR, TTS, success probability.
-5. **Comparison:** Determine relative performance across solvers and instances.
+1. Encode real-world problems into QUBO or Ising form
+2. Execute quantum, hybrid, or classical solvers
+3. Collect multiple solution samples
+4. Compute benchmark metrics
+5. Compare solver performance across instances
 
 ---
 
 ## 5. Research References on Benchmarking
 
-Academic papers provide rigor, standard benchmarks, and evaluation methodology.
+Key academic work defining benchmarks and evaluation methodology.
 
-### Benchmark Design & Metrics
+* **Quantum Optimization Benchmarking Library (QOBLIB)**
+  Defines ten challenging problem classes for fair solver comparison.
 
-* **Quantum Optimization Benchmarking Library (QOBLIB):** Defines ten challenging problem classes for fair comparative benchmarks. ([IBM][3])
+* **Benchmarking the Quantum Approximate Optimization Algorithm**
+  Introduces energy and success metrics for QAOA performance studies.
 
-* **Benchmarking the quantum approximate optimization algorithm:** A foundational study of QAOA performance on weighted MaxCut and 2-SAT instances, introducing energy and success metrics. ([Springer Link][7])
+* **Quantum Annealing vs Classical Solvers**
+  Empirical comparison of dense QUBO instances across solver paradigms.
 
-* **Benchmarking quantum annealing vs classical solvers:** Recent empirical study contrasting solution quality and time for dense QUBOs with both quantum and classical approaches. ([Nature][8])
+* **Quantum-Inspired Heuristic Benchmarking**
+  Evaluation of hybrid, annealing, and digital solvers on spin glass models.
 
-* **Benchmark of quantum-inspired heuristic solvers for QUBO:** Comparison of hybrid, annealing, and digital solvers including spin glass and real-world style problems. ([Nature][9])
-
-* **QOPTLib benchmark suite:** A proposed benchmark collection for combinatorial problems like TSP, bin packing, VRP, and MaxCut, tailored to quantum and hybrid methods. ([Emergent Mind][10])
+* **QOPTLib Benchmark Suite**
+  Benchmark collection tailored for combinatorial optimization problems.
 
 ---
 
 ## 6. Benchmark Summary Table
 
-| Resource                | Type                    | Focus                            | Notes                                                                  |
-| ----------------------- | ----------------------- | -------------------------------- | ---------------------------------------------------------------------- |
-| **QOPTLib**             | Dataset                 | Optimization instances           | General-purpose benchmark set for 4 problem types ([Mendeley Data][1]) |
-| **Amplify Benchmark**   | Framework + sets        | QUBO problems                    | CLI + visualization + solver integration ([GitHub][2])                 |
-| **QOBLIB**              | Library + benchmark set | Challenging optimization classes | Designed for fair quantum vs classical comparison ([IBM][3])           |
-| **QUBO.org**            | Benchmark site          | Solver comparison                | Classical vs quantum comparisons ([QUBO Solver Benchmark][4])          |
-| **HamLib**              | Hamiltonian dataset     | Broad range                      | Quantum simulation + optimization uses ([arXiv][5])                    |
-| QAOA benchmarking paper | Research                | QAOA performance                 | Energy, success probability metrics ([Springer Link][7])               |
+| Resource                | Type           | Focus                     | Notes                             |
+| ----------------------- | -------------- | ------------------------- | --------------------------------- |
+| **QOPTLib**             | Dataset        | Optimization instances    | General-purpose benchmark         |
+| **Amplify Benchmark**   | Framework      | QUBO problems             | CLI and visualization             |
+| **QOBLIB**              | Library        | Hard optimization classes | Fair quantum-classical comparison |
+| **QUBO.org**            | Benchmark site | Solver comparison         | Classical vs quantum              |
+| **Hamiltonian Library** | Dataset        | Hamiltonians              | Optimization and simulation       |
+| **QAOA benchmarking**   | Research       | QAOA metrics              | Energy and success rates          |
 
 ---
 
 ## 7. Practical Tips for Benchmarking
 
-* **Use standardized instances** to avoid bias.
-* **Record multiple metrics** (e.g., AR, TTS, success rate) for a holistic view.
-* **Run baselines** with classical heuristics (simulated annealing, tabu search).
-* **Tight penalty calibration** in QUBO/Ising can drastically affect metric outcomes.
+* Use **standardized instances** to avoid bias
+* Report **multiple metrics** for completeness
+* Include **classical baselines**
+* Carefully tune **penalty weights** in QUBO and Ising formulations
 
 ---
