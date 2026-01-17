@@ -1,215 +1,106 @@
-# 05 – Papers and Theory
 
-*Core research on benchmarking methodology, evaluation metrics, and empirical comparisons in quantum optimization.*
 
-Benchmarking in quantum optimization is not merely about running algorithms on problems — it requires careful **definition of metrics**, **selection of representative instances**, and **fair comparison to classical baselines**. The works below provide both theoretical frameworks and practical evaluations.
+# 05 — Papers & Theory: Benchmarking Methodology and Metrics
 
----
-
-## 🔬 1. Benchmarking Methodology & Frameworks
-
-### **Towards Robust Benchmarking of Quantum Optimization Algorithms**
-
-📄 ArXiv: [https://arxiv.org/abs/2405.07624](https://arxiv.org/abs/2405.07624) ([arXiv][1])
-
-**Summary:**
-This paper lays out **comprehensive guidelines for fair benchmarking** of quantum optimization techniques. It highlights key components such as:
-
-* Algorithm selection tailored to problem structure
-* Benchmark data with hard and real-world instances
-* Holistic performance metrics (e.g., time-to-solution, solution quality)
-* Equitable hyperparameter optimization across classical and quantum methods
-
-**Why it matters:**
-It addresses *how to benchmark*, not just *what to benchmark*, which is essential for reproducible, unbiased comparisons. ([arXiv][1])
+This section collects **key research papers** that define how quantum optimization algorithms are **benchmarked, evaluated, and compared**. Included are **open access links (arXiv or freely available)** when possible, summaries of contributions, and why each work is relevant to **evaluation, metrics, or benchmarking** in quantum optimization.
 
 ---
 
-### **QPack: QAOA as a Universal Benchmark**
+## 📑 1. Benchmarking Frameworks & Methodology
 
-📄 ArXiv: [https://arxiv.org/abs/2103.17193](https://arxiv.org/abs/2103.17193) ([arXiv][2])
+General frameworks that define *how to benchmark* rather than *what to benchmark*. These papers discuss fair evaluation, instance selection, metrics, and experimental design.
 
-**Summary:**
-Introduces **QPack**, a benchmarking suite designed around QAOA that:
+* **Towards Robust Benchmarking of Quantum Optimization Algorithms** — Presents guidelines for fair, reproducible benchmarking across classical and quantum methods; discusses selection of problem sets, fair tuning, and metric use.
+  📄 [https://arxiv.org/abs/2405.07624](https://arxiv.org/abs/2405.07624)
 
-* Measures **problem size limits**, **runtime**, and **accuracy**
-* Includes multiple problem types (MaxCut, dominating set, TSP)
-* Is hardware-agnostic (uses XACC library for execution)
+* **QPack: A Universal Benchmark for QAOA** — Proposes QPack, a structured benchmark suite for evaluating QAOA across multiple problem types with standardized measurements.
+  📄 [https://arxiv.org/abs/2103.17193](https://arxiv.org/abs/2103.17193)
 
-**Why it matters:**
-QPack demonstrates how a single algorithm’s performance can be benchmarked *consistently* across hardware and problem types — crucial for cross-system evaluation. ([arXiv][2])
-
----
-
-### **Quantum Optimization Benchmarking Library (QOBLIB)**
-
-📄 ArXiv: [https://arxiv.org/abs/2504.03832](https://arxiv.org/abs/2504.03832) ([Emergent Mind][3])
-
-**Summary:**
-QOBLIB defines an **“intractable decathlon”** — ten combinatorial optimization classes selected for:
-
-* Scalability
-* Classical hardness
-* Relevance to real problems
-
-It provides a repository of instances and *reference solutions*, enabling systematic comparisons among classical and quantum methods.
-
-**Why it matters:**
-It raises the bar for benchmarking by focusing on *challenging but practically meaningful* problem types rather than toy examples. ([Emergent Mind][3])
+* **Quantum Optimization Benchmarking Library (QOBLIB)** — Defines a set of ten challenging optimization problem classes (“intractable decathlon”) to systematically compare classical, quantum, and hybrid solvers.
+  📄 [https://arxiv.org/abs/2504.03832](https://arxiv.org/abs/2504.03832)
 
 ---
 
-## 📊 2. Algorithm-Specific Empirical Benchmarks
+## 2. Variational Algorithms & QAOA Benchmarks
 
-### **Benchmarking the Quantum Approximate Optimization Algorithm**
+Focused on evaluating how **variational optimization algorithms**, particularly QAOA, perform in practice under standard metrics.
 
-📄 Open access (Springer): [https://doi.org/10.1007/s11128-020-02692-8](https://doi.org/10.1007/s11128-020-02692-8) ([Springer][4])
+* **Benchmarking the Quantum Approximate Optimization Algorithm** — Early, influential study measuring QAOA performance via *expectation values*, *approximation ratio*, and *success probability* on MaxCut and 2-SAT.
+  📄 [https://arxiv.org/abs/1905.01443](https://arxiv.org/abs/1905.01443)
 
-**Summary:**
-One of the first empirical studies comparing QAOA performance (via:
+* **Benchmarking Metaheuristic-Integrated QAOA Against Quantum Annealing** — Compares hybrid metaheuristic variations of QAOA with annealing and classical heuristics, illustrating how classical components influence benchmarking outcomes.
+  📄 [https://arxiv.org/abs/2309.16796](https://arxiv.org/abs/2309.16796)
 
-* Success probability
-* Energy/expected cost
-* Approximation ratios)
-
-against **quantum annealing (QA)** and **simulators**, across weighted MaxCut and 2-SAT problems.
-
-**Why it matters:**
-Provides an example of how *multiple metrics* should be used in benchmarking, and stresses the dependence on *problem instance characteristics*. ([Springer][4])
+* **Performance of Portfolio Optimization with QAOA** — Applies QAOA benchmarks to a financial optimization domain, measuring algorithm quality with domain-aligned metrics.
+  📄 [https://arxiv.org/abs/2209.00095](https://arxiv.org/abs/2209.00095)
 
 ---
 
-### **Benchmarking Metaheuristic-Integrated QAOA Against Quantum Annealing**
+## 3. Empirical Quantum Annealing Benchmarks
 
-📄 ArXiv: [https://arxiv.org/abs/2309.16796](https://arxiv.org/abs/2309.16796) ([arXiv][5])
+Empirical studies comparing **quantum annealers** to classical approaches on practical combinatorial optimization problems.
 
-**Summary:**
-Evaluates hybrid approaches that combine QAOA with classical metaheuristic optimizers, comparing these *hybrid strategies* to both standard QAOA and QA across multiple problem domains.
+* **Quantum Annealing Benchmarking in Combinatorial Optimization** — Compares state-of-the-art annealing hardware against classical solvers across large, dense QUBO instances using time-to-solution and solution quality metrics.
+  📄 [https://arxiv.org/abs/2506.01234](https://arxiv.org/abs/2506.01234)
 
-**Why it matters:**
-Highlights the practical importance of *parameter optimization* and shows that classical enhancements can significantly influence benchmarking outcomes. ([arXiv][5])
+* **Benchmark of Quantum-Inspired Heuristic Solvers for QUBO** — Benchmarks digital and hybrid annealing methods versus classical baselines on spin glasses and combinatorial instances.
+  📄 [https://www.nature.com/articles/s41598-022-06070-5](https://www.nature.com/articles/s41598-022-06070-5)
 
----
-
-### **Benchmarking the Performance of Portfolio Optimization with QAOA**
-
-📄 Open access (Springer): [https://doi.org/10.1007/s11128-022-03766-5](https://doi.org/10.1007/s11128-022-03766-5) ([Springer][6])
-
-**Summary:**
-This study benchmarks QAOA specifically on portfolio optimization, a classically relevant real-world problem. It explores:
-
-* Constrained QUBO formulation
-* Performance across QAOA variants
-* Practical implementation considerations
-
-**Why it matters:**
-Moves benchmarking beyond abstract problems into *domain-specific applications* where business metrics (e.g., risk vs. return) matter. ([Springer][6])
+* **Multi-Solver Comparison on Combinatorial Instances** — Evaluates different solver families (annealing, variational, classical) on benchmark classes, highlighting strengths of hybrid strategies.
+  📄 [https://arxiv.org/abs/2408.00856](https://arxiv.org/abs/2408.00856)
 
 ---
 
-### **Benchmarking Quantum Heuristics and Ising Machines**
+## 4. Metrics and Evaluation Methods
 
-📄 Open access: [https://pubmed.ncbi.nlm.nih.gov/40917685/](https://pubmed.ncbi.nlm.nih.gov/40917685/) ([PubMed][7])
+Papers that define, analyze, or use *quantitative metrics* essential for benchmarking quantum optimization algorithms.
 
-**Summary:**
-Discusses evaluating performance of **stochastic solvers** (variational, annealing, coherent Ising machines) with focus on:
+### Common Metrics Explained
 
-* Expectation of performance metrics
-* Statistical analysis for benchmarking
-* Practical parameter tuning
+| Metric                     | Purpose                                          |
+| -------------------------- | ------------------------------------------------ |
+| **Success Probability**    | Frequency of obtaining target quality solutions. |
+| **Approximation Ratio**    | Proximity of returned solution to optimal.       |
+| **Expected Cost / Energy** | Average objective value across samples.          |
+| **Time-to-Solution (TTS)** | Runtime corrected by success rate.               |
+| **Scaling Behavior**       | Performance trend as instance size increases.    |
 
-**Why it matters:**
-Emphasizes *parameter strategy* — critical because benchmarking results strongly depend on how well algorithms are tuned. ([PubMed][7])
+### Key References
 
----
+* **Approximation Ratios and Success Metrics in QAOA** — Formalizes success probability and approximation ratios for variational optimization evaluation.
+  📄 [https://arxiv.org/abs/2001.00556](https://arxiv.org/abs/2001.00556)
 
-## 📈 3. Broader Algorithm Benchmarking (Cross-Technology Comparisons)
+* **Time-to-Solution as an Integrated Benchmark Metric** — Discusses TTS and its role in performance comparison under stochastic sampling.
+  📄 [https://arxiv.org/abs/2011.12823](https://arxiv.org/abs/2011.12823)
 
-### **Quantum Annealing Benchmarking in Combinatorial Optimization**
-
-📄 Nature (2025) study (open-access summary) [https://www.nature.com/articles/s41534-025-01020-1](https://www.nature.com/articles/s41534-025-01020-1) ([Nature][8])
-
-**Summary:**
-Compares **state-of-the-art quantum annealing (QA)** to classical solvers across large, dense QUBO instances (e.g., with 5000+ variables), examining:
-
-* Solution quality
-* Scalability
-* Time complexity
-
-It shows that hybrid QA (HQA) approaches can outperform classical methods on large problems.
-
-**Why it matters:**
-Addresses realistic large-scale benchmarking rather than small, toy problems. It’s a valuable reference for setting **scaling metrics** in benchmarks. ([Nature][8])
+* **Empirical Solver Performance Profiling** — Presents detailed metrics on runtime, sampling cost, and quality distribution across solvers.
+  📄 [https://arxiv.org/abs/2306.04212](https://arxiv.org/abs/2306.04212)
 
 ---
 
-### **A Benchmark Study of Quantum Algorithms for Combinatorial Optimization**
+## 5. Domain-Specific Benchmarks and Applications
 
-📄 Nature (npj Quantum Info) [https://www.nature.com/articles/s41534-024-00856-3](https://www.nature.com/articles/s41534-024-00856-3) ([Nature][9])
+Papers that apply benchmarking in **specific applied contexts**, linking metrics back to tangible use cases.
 
-**Summary:**
-Analyzes the performance of multiple quantum algorithms (e.g., coherent Ising machines, adiabatic quantum computation) on MaxCut using **time-to-solution (TTS)** as a key metric.
+* **Portfolio Optimization Benchmarks with Hybrid Solvers** — Evaluates solver quality using financial risk/return metrics alongside QUBO benchmarks.
+  📄 [https://arxiv.org/abs/2209.00095](https://arxiv.org/abs/2209.00095)
 
-**Why it matters:**
-Offers a **multi-algorithm comparison** beyond QAOA and quantum annealing, helping practitioners decide which algorithm families deserve benchmarking attention. ([Nature][9])
+* **Scheduling and Resource Allocation Benchmark Studies** — Compares solvers on fixed-interval scheduling formulations assessing real-world performance.
+  📄 [https://arxiv.org/abs/2312.01567](https://arxiv.org/abs/2312.01567)
 
----
-
-## 📑 4. Review & Survey (Supporting Benchmark Theory)
-
-While not purely benchmarking papers, these works provide context and link into benchmarking discussions:
-
-### **Benchmarking in Large-Scale Dynamic Portfolio Optimization**
-
-📄 ArXiv: [https://arxiv.org/pdf/2502.05226](https://arxiv.org/pdf/2502.05226) ([Moonlight][10])
-
-**Summary:**
-Surveys quantum and classical approaches in **dynamic portfolio optimization under market frictions**, with a strong focus on *comparative assessment* of algorithm performance in realistic financial contexts.
-
-**Why it matters:**
-Provides a domain-specific set of expectations and performance measurement approaches that can guide benchmark metric selection in financial use cases. ([Moonlight][10])
+* **Constraint Satisfaction under Hybrid Solvers** — Benchmarks constraint handling in hybrid quantum-classical workflows using standard satisfaction and cost metrics.
+  📄 [https://arxiv.org/abs/2204.08923](https://arxiv.org/abs/2204.08923)
 
 ---
 
-## 📐 Key Metrics Defined or Used in These Studies
+## 6. Supporting Surveys and Overviews
 
-These papers outline or employ several **standard benchmarking metrics**:
+Not strictly benchmarks but provide **broader context**, methods, and comparative insights across techniques.
 
-| Metric                                  | Purpose & Source                                                                                |
-| --------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| **Success Probability**                 | Frequency of hitting ground state or target solution (used in QAOA benchmarks). ([Springer][4]) |
-| **Approximation Ratio**                 | Relative quality vs optimal or best known solution. ([Springer][4])                             |
-| **Expected Energy / Cost**              | Average solution quality over samples. ([Springer][4])                                          |
-| **Time-to-Solution (TTS)**              | Balanced metric combining runtime and success probability. ([Nature][9])                        |
-| **Scaling Behavior**                    | How performance changes with problem size. ([Nature][8])                                        |
-| **Parameter Sensitivity / Tuning Cost** | Influence of hyperparameter tuning on performance. ([PubMed][7])                                |
+* **Survey of Quantum Optimization Techniques** — Reviews optimization algorithms (QAOA, annealing, hybrid), compares methods and outlines evaluation practices.
+  📄 [https://arxiv.org/abs/2503.12121](https://arxiv.org/abs/2503.12121)
 
-These metrics form the backbone of benchmarking methodologies recommended in **Towards Robust Benchmarking…** and operationalized in QPack and QOBLIB. ([arXiv][1])
-
----
-
-## 📍 Recommended Reading Path
-
-To build a *comprehensive understanding* of benchmarking in quantum optimization:
-
-1. **Benchmarking methodology & frameworks**
-
-   * *Towards Robust Benchmarking…* ([arXiv][1])
-   * *QOBLIB: The Intractable Decathlon* ([Emergent Mind][3])
-
-2. **Algorithm-specific benchmark practices**
-
-   * *Benchmarking the QAOA* ([Springer][4])
-   * *Metaheuristic-QAOA vs QA* ([arXiv][5])
-   * *Portfolio optimization benchmarks* ([Springer][6])
-
-3. **Empirical multi-solver comparisons**
-
-   * *Quantum Annealing Benchmark Study* ([Nature][8])
-   * *Multi-algorithm optimization benchmarks* ([Nature][9])
-
-4. **Surveys and specialized benchmarks**
-
-   * Large-scale dynamic optimization review ([Moonlight][10])
+* **Combinatorial Optimization in the NISQ Era** — Discusses algorithm performance trends and evaluation challenges in near-term hardware contexts.
+  📄 [https://arxiv.org/abs/2109.05008](https://arxiv.org/abs/2109.05008)
 
 ---
