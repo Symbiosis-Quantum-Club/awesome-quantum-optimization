@@ -1,9 +1,47 @@
+# ⭐ Awesome-Quantum-Optimization
+
+*A curated, implementation-focused guide to **quantum optimization**. We shall discuss problem formulations, algorithms, tools, datasets, benchmarks, and practical project directions.*
+
+
+---
+
+## Overview
+
+Quantum optimization is currently **one of the most important and fastest-growing subfields within quantum computing**, bridging quantum algorithms, physical QC hardware models, applied mathematics, and industrial use cases. 
+**Quantum optimization** studies how quantum and quantum-inspired algorithms can be applied to continuous optimization problems. Many of today’s most promising quantum algorithms; such as **QAOA (Quantum Approximate Optimization Algorithm)**, **Adiabatic Quantum Computation**, **Quantum Annealing**, and **Quantum-Inspired Optimizers** - are specifically designed to solve or approximate solutions to difficult optimization & efficiency problems.
+
+Most practical approaches reduce problems to **QUBO (Quadratic Unconstrained Binary Optimization)** or **Ising Hamiltonians**, which can then be processed using the following techniques:
+
+* gate-based variational algorithms (e.g., QAOA),
+* analog / adiabatic methods,
+* quantum annealing,
+* hybrid quantum–classical solvers,
+* quantum-inspired classical approximations.
+
+This repository focuses on **what can be implemented today** using existing hardware, simulators, and hybrid workflows, rather than speculative long-term algorithms.
+
+---
+
+## Current Problem–Algorithm Pipeline for Quantum Optimization Projects
+
+```
+Optimization Problem
+      ↓
+QUBO / Ising Encoding
+      ↓
+Quantum / Hybrid Algorithm
+      ↓
+Hardware or Simulator
+      ↓
+Benchmarking & Evaluation
+```
 
 Each document in this repository corresponds to a specific stage of this pipeline.
 
 ---
 
 ## Repository Structure
+
 
 | File                                                             | Scope                                                                          |
 | ---------------------------------------------------------------- | ------------------------------------------------------------------------------ |
@@ -90,13 +128,6 @@ Benchmark datasets and metrics are documented in
 
 This section collects the theoretical foundations, canonical papers, surveys, and recommended reading that underpin the practical material in this repository. It is structured so readers can pick the right level: short introductions, focused algorithm papers, mapping/formulation references, and deeper theoretical or complexity results.
 
-Purpose
-- Give implementers quick references to algorithm descriptions and proofs.
-- Give researchers pointers to complexity results, approximation bounds, and formal analyses.
-- Provide a curated reading order for newcomers and intermediate readers.
-
-Recommended reading categories
-
 - Foundational algorithm papers (implementer-first)
   - "A Quantum Approximate Optimization Algorithm" — E. Farhi, J. Goldstone, S. Gutmann (introduces QAOA and basic performance discussion).
   - Key adiabatic / annealing works — the foundational adiabatic quantum computing and quantum annealing papers that introduce the adiabatic paradigm and early algorithmic experiments.
@@ -118,22 +149,6 @@ Recommended reading categories
 - Textbooks & background
   - Standard quantum computing textbooks for necessary background material (e.g., quantum circuits, Hamiltonian dynamics).
   - Classical optimization texts for methods and baselines used as comparisons.
-
-Annotated examples (short guide)
-- Beginners (2–6 hours)
-  1. Read a short survey/review to understand the landscape (surveys on QAOA and quantum annealing).
-  2. Read the QAOA paper to get intuition on the variational approach and parametrization.
-  3. Read a QUBO/Ising mapping note for at least one problem of interest (e.g., MaxCut or small TSP).
-
-- Intermediate (2–3 days)
-  1. Read hardware/empirical benchmarking studies to learn practical limitations.
-  2. Study a few theoretical papers on approximation and performance (low-depth results, complexity).
-  3. Reproduce a small experiment from a benchmark paper using a simulator or a cloud device.
-
-- Advanced / research (1–2+ weeks)
-  1. Study rigorous complexity/approximation results and proofs.
-  2. Explore modifications (warm-starts, problem-informed ansätze) and theoretical analyses of their benefits.
-  3. Reproduce and extend empirical benchmarks, or implement new encodings and scaling experiments.
 
 How this maps to the repository
 - Use [`05-papers-and-theory.md`](05-papers-and-theory.md) for the full annotated bibliography, grouped references, and suggested reading order.
@@ -182,3 +197,4 @@ These are suitable for:
 MIT License — see [`LICENSE`](LICENSE).
 
 ---
+
